@@ -37,7 +37,6 @@ __copyright__ = "Copyright (c) 2008-2012 Hive Solutions Lda."
 __license__ = "GNU General Public License (GPL), Version 3"
 """ The license for the module """
 
-import base64
 import cStringIO
 
 global plugins
@@ -54,8 +53,7 @@ string_buffer = cStringIO.StringIO()
 
 # creates the printing options map
 printing_options = {
-    "printing_name" : "binie",
-    "file" : string_buffer
+    "printing_name" : "win32"
 }
 
 try:
@@ -63,13 +61,6 @@ try:
     # the binary contents representing the printing operations (in binie format),
     # then reads the string buffer to retrieve the contents
     plugins.printing_manager.print_printing_language(HELLO_LANGUAGE, printing_options)
-    string_buffer.seek(0)
-    printing_contents = string_buffer.read()
 finally:
     # closes the string buffer
     string_buffer.close()
-
-# encodes the printing contents into base 64 data and
-# then prints the value
-printing_contents_b64 = base64.b64encode(printing_contents)
-print printing_contents_b64
