@@ -46,7 +46,7 @@ HELLO_LANGUAGE = "<printing_document name=\"Hello World\" font=\"Calibri\" font_
     "<paragraph><line><text text_align=\"center\">Hello World</text></line></paragraph>"\
 "</printing_document>"
 """ The (printing) language string containing the basics
-for the printing of an hello world message """ 
+for the printing of an hello world message """
 
 # creates a string buffer to receive the binary contents
 # of the processed print object
