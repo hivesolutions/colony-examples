@@ -47,8 +47,32 @@ DATABASE_PATH = "database.db"
 """ The path to the database to be used in the
 testing, note that this will be a sqlite database """
 
+DATABASE_NAME = "sandbox"
+""" The name of the database to be used in the
+testing operations """
+
+USERNAME = "root"
+""" The username to be used in case a remote database
+connection is meant to be used """
+
+PASSWORD = "root"
+""" The password to be used in case a remote database
+connection is meant to be used """
+
+ENGINE_NAME = "mysql"
+""" The name of the engine to be used in case no other
+is specified """
+
+HOST = "db"
+""" The host of the database management system to be used
+for remote connections """
+
 PARAMETERS = {
-    "file_path" : DATABASE_PATH
+    "file_path" : DATABASE_PATH,
+    "database" : DATABASE_NAME,
+    "username" : USERNAME,
+    "password" : PASSWORD,
+    "host" : HOST
 }
 """ The map containing the parameters to be sent
 to the entity manager for the configuration the engine """
@@ -68,7 +92,7 @@ def start_em():
 
     # loads the entity manager and sets the connection
     # parameters according to the specification
-    em = plugins.entity_manager.load_entity_manager("sqlite")
+    em = plugins.entity_manager.load_entity_manager(ENGINE_NAME)
     em.set_connection_parameters(PARAMETERS)
 
     # retrieves the mock entities from the entity manager
