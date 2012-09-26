@@ -39,6 +39,10 @@ __license__ = "GNU General Public License (GPL), Version 3"
 
 global plugins
 
+DESTROY_DATABASE = False
+""" Flag that controls if the database should be
+destroyed at the end of the execution """
+
 DATABASE_PATH = "database.db"
 """ The path to the database to be used in the
 testing, note that this will be a sqlite database """
@@ -99,6 +103,10 @@ def stop_em(em, destroy = True):
     @param destroy: If the underlying data structure should
     be destroyed (deleted).
     """
+    
+    # closes the entity manager releasing all it's
+    # internal data structures
+    em.close()
 
     # destroys the underlying data source, removes
     # all files and structures associated with the
@@ -106,18 +114,55 @@ def stop_em(em, destroy = True):
     destroy and em.destroy()
 
 def create_structures(em):
+    # retrieves the complete set of mock entities
+    # to use them in the construction of new ones
     mocks = em.get_mock_entities()
 
+    # creates a new car entity and saves it in the
+    # entity manager's data source
     car = mocks.Car()
     car.tires = 3
     em.save(car)
 
-    person = mocks.Employee()
-    person.name = "João Magalhães"
-    person.salary = 1200
-    person.cars = [car]
-    em.save(person)
+    # creates a new employee entity and saves it in the
+    # entity manager's data source
+    employee = mocks.Employee()
+    employee.name = "João Magalhães"
+    employee.salary = 1200
+    employee.cars = [car]
+    em.save(employee)
+    
+def retrieve_structures(em):
+    # retrieves the complete set of mock entities
+    # to used them for retrieval and creation
+    mocks = em.get_mock_entities()
 
-em = start_em()
-create_structures(em)
-#stop_em(em)
+    # creates a new employee entity and saves it in the
+    # entity manager's data source
+    employee = mocks.Employee()
+    employee.name = "João Magalhães"
+    employee.salary = 1200
+    em.save(employee)
+
+    # retrieves the person object using the just saved
+    # employee object id and then tries to access an
+    # employee level attribute, this access should trigger
+    # the loading of the underlying layers
+    person = em.get(mocks.Person, employee.object_id)
+    print person.salary
+
+def call_transaction(em, callable):
+    em.begin()
+    try: callable(em)
+    except: em.rollback(); raise
+    else: em.commit()
+
+def execute():
+    em = start_em()
+    try:
+        call_transaction(em, create_structures)
+        call_transaction(em, retrieve_structures)
+    finally:
+        stop_em(em, destroy = DESTROY_DATABASE)
+
+execute()
