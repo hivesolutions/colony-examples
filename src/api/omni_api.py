@@ -163,7 +163,8 @@ def _create_user():
         }
     }
 
-    print create_system_user(system_user)
+    _system_user = create_system_user(system_user)
+    print _system_user
 
 def _create_products():
     products = (
@@ -180,7 +181,8 @@ def _create_products():
 
     vat = get_vat("IVA23")
     for product in products: product["vat_class"] = vat
-    create_product(products)
+    _products = create_product(products)
+    print _products
 
 def execute(set = ["create_user"]):
     try:
