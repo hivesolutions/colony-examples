@@ -127,7 +127,7 @@ def stop_em(em, destroy = True):
     @param destroy: If the underlying data structure should
     be destroyed (deleted).
     """
-    
+
     # closes the entity manager releasing all it's
     # internal data structures
     em.close()
@@ -155,7 +155,7 @@ def create_structures(em):
     employee.salary = 1200
     employee.cars = [car]
     em.save(employee)
-    
+
 def retrieve_structures(em):
     # retrieves the complete set of mock entities
     # to used them for retrieval and creation

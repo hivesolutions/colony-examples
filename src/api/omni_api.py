@@ -89,14 +89,20 @@ def get_vat(vat_name):
     }
     return get_first_json("omni/vat_classs.json", parameters)
 
-def create_products(products):
+def create_product(product):
     payload = {
-        "product" : products
+        "product" : product
     }
     return post_json("omni/products.json", payload)
 
+def create_system_user(system_user):
+    payload = {
+        "system_user" : system_user
+    }
+    return post_json("omni/system_users.json", payload)
+
 def get_session_id():
-    return "41ff2fe77749753d96db9483f36e9b4d"
+    return "0533dbd2ca8c55d60cc1ac80db0ed420"
 
 def handle_error(error):
     data = error.read()
@@ -147,7 +153,19 @@ def post_data(path, parameters = None, data = None):
     finally: file.close()
     return response
 
-try:
+def _create_user():
+    system_user = {
+        "username" : "joamag",
+        "email" : "joamag@gmail.com",
+        "_parameters" : {
+            "password" : "f1hbmua1m2ya",
+            "type" : 1
+        }
+    }
+
+    print create_system_user(system_user)
+
+def _create_products():
     products = (
         {
             "company_product_code" : "12312543sad64563123",
@@ -161,8 +179,16 @@ try:
     )
 
     vat = get_vat("IVA23")
-    for product in products:
-        product["vat_class"] = vat
-    create_products(products)
-except ApiError, error:
-    error._print()
+    for product in products: product["vat_class"] = vat
+    create_product(products)
+
+def execute(set = ["create_user"]):
+    try:
+        for item in set:
+            _globals = globals()
+            method = _globals.get("_" + item, None)
+            method and method()
+    except ApiError, error:
+        error._print()
+
+execute()
