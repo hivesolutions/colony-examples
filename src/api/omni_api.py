@@ -184,7 +184,7 @@ def _create_products():
     _products = create_product(products)
     print _products
 
-def execute(set = ["create_user"]):
+def execute(set = ("create_user",)):
     try:
         for item in set:
             _globals = globals()
