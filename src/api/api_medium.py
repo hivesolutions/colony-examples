@@ -37,5 +37,9 @@ __copyright__ = "Copyright (c) 2008-2012 Hive Solutions Lda."
 __license__ = "GNU General Public License (GPL), Version 3"
 """ The license for the module """
 
+global manager
+global plugins
 
+manager.ensure(plugins.api_medium)
 
+client = plugins.api_medium.create_client({})
