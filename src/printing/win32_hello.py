@@ -39,7 +39,10 @@ __license__ = "GNU General Public License (GPL), Version 3"
 
 import cStringIO
 
+global manager
 global plugins
+
+manager.ensure(plugins.printing_manager)
 
 HELLO_LANGUAGE = "<printing_document name=\"Hello World\" font=\"Calibri\" font_size=\"9\">"\
     "<paragraph><line><text text_align=\"center\">Hello World</text></line></paragraph>"\
