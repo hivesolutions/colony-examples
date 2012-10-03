@@ -42,4 +42,15 @@ global plugins
 
 manager.ensure(plugins.api_medium)
 
-client = plugins.api_medium.create_client({})
+API_PARAMETERS = {}
+""" The parameters to be used to configure
+the api client, should respect the default
+configuration of the colony instance """
+
+BASE_URL = "http://localhost:8080/dynamic/rest/mvc/medium/"
+""" The base url to the target endpoint of
+communication for the medium service """
+
+client = plugins.api_medium.create_client(API_PARAMETERS)
+client.generate_medium_structure(BASE_URL)
+client.set_message("Hello World", "information")
