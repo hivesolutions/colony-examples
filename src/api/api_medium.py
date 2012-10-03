@@ -51,6 +51,9 @@ BASE_URL = "http://localhost:8080/dynamic/rest/mvc/medium/"
 """ The base url to the target endpoint of
 communication for the medium service """
 
+# creates the client with the default parameters and then
+# generates the structure with the defined base url and
+# runs the remote call to update the message value
 client = plugins.api_medium.create_client(API_PARAMETERS)
 client.generate_medium_structure(BASE_URL)
 client.set_message("Hello World", "information")
