@@ -139,6 +139,7 @@ def get_data(path, parameters = None):
     return response
 
 def post_data(path, parameters = None, data = None):
+    data = colony.legacy.bytes(data)
     parameters = parameters or {}
     parameters["session_id"] = get_session_id()
     parameters = colony.legacy.urlencode(parameters, True)
