@@ -38,7 +38,8 @@ __license__ = "GNU General Public License (GPL), Version 3"
 """ The license for the module """
 
 import base64
-import cStringIO
+
+import colony
 
 global manager
 global plugins
@@ -53,7 +54,7 @@ for the printing of an hello world message """
 
 # creates a string buffer to receive the binary contents
 # of the processed print object
-string_buffer = cStringIO.StringIO()
+string_buffer = colony.legacy.StringIO()()
 
 # creates the printing options map
 printing_options = {

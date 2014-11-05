@@ -38,8 +38,8 @@ __license__ = "GNU General Public License (GPL), Version 3"
 """ The license for the module """
 
 import json
-import urllib
-import urllib2
+
+import colony
 
 BASE_URL = "http://localhost:8080/dynamic/rest/mvc/"
 """ The base url to be used in the communication
@@ -116,24 +116,24 @@ def get_first_json(path, parameters = None):
 
 def get_json(path, parameters = None):
     try: response = get_data(path, parameters)
-    except urllib2.HTTPError, error: handle_error(error)
+    except colony.legacy.HTTPError as error: handle_error(error)
     response_json = json.loads(response)
     return response_json
 
 def post_json(path, json_data, parameters = None):
     data = json.dumps(json_data)
     try: response = post_data(path, parameters, data)
-    except urllib2.HTTPError, error: handle_error(error)
+    except colony.legacy.HTTPError as error: handle_error(error)
     response_json = json.loads(response)
     return response_json
 
 def get_data(path, parameters = None):
     parameters = parameters or {}
     parameters["session_id"] = get_session_id()
-    parameters = urllib.urlencode(parameters, True)
+    parameters = colony.legacy.urlencode(parameters, True)
     url = BASE_URL + path + "?" + parameters
 
-    file = urllib2.urlopen(url)
+    file = colony.legacy.urlopen(url)
     try: response = file.read()
     finally: file.close()
     return response
@@ -141,14 +141,14 @@ def get_data(path, parameters = None):
 def post_data(path, parameters = None, data = None):
     parameters = parameters or {}
     parameters["session_id"] = get_session_id()
-    parameters = urllib.urlencode(parameters, True)
+    parameters = colony.legacy.urlencode(parameters, True)
     url = BASE_URL + path + "?" + parameters
     headers = {
         "Content-Type": "application/json"
     }
 
-    request = urllib2.Request(url, data, headers)
-    file = urllib2.urlopen(request)
+    request = colony.legacy.Request(url, data, headers)
+    file = colony.legacy.urlopen(request)
     try: response = file.read()
     finally: file.close()
     return response
@@ -190,7 +190,7 @@ def execute(set = ("create_user",)):
             _globals = globals()
             method = _globals.get("_" + item, None)
             method and method()
-    except ApiError, error:
+    except ApiError as error:
         error._print()
 
 execute()

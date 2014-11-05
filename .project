@@ -3,6 +3,7 @@
 	<name>colony.examples</name>
 	<comment></comment>
 	<projects>
+		<project>colony</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
