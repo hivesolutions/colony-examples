@@ -75,4 +75,4 @@ finally:
 # encodes the printing contents into base 64 data and
 # then prints the value
 printing_contents_b64 = base64.b64encode(printing_contents)
-print printing_contents_b64
+print(printing_contents_b64)

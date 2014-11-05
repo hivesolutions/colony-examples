@@ -78,10 +78,10 @@ class ApiError(Exception):
         message = exception.get("message", "No message")
         traceback = exception.get("traceback", ())
 
-        print "%s - %s" % (exception_name, message)
-        print "--------------"
+        print("%s - %s" % (exception_name, message))
+        print("--------------")
         for line in traceback:
-            print line.strip()
+            print(line.strip())
 
 def get_vat(vat_name):
     parameters = {
@@ -164,7 +164,7 @@ def _create_user():
     }
 
     _system_user = create_system_user(system_user)
-    print _system_user
+    print(_system_user)
 
 def _create_products():
     products = (
@@ -182,7 +182,7 @@ def _create_products():
     vat = get_vat("IVA23")
     for product in products: product["vat_class"] = vat
     _products = create_product(products)
-    print _products
+    print(_products)
 
 def execute(set = ("create_user",)):
     try:

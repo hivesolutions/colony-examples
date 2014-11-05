@@ -176,7 +176,7 @@ def retrieve_structures(em):
     # employee level attribute, this access should trigger
     # the loading of the underlying layers
     person = em.get(mocks.Person, employee.object_id)
-    print person.salary
+    print(person.salary)
 
 def call_transaction(em, callable):
     em.begin()
