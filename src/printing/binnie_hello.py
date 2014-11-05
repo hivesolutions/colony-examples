@@ -57,10 +57,10 @@ for the printing of an hello world message """
 string_buffer = colony.legacy.StringIO()()
 
 # creates the printing options map
-printing_options = {
-    "printing_name" : "binie",
-    "file" : string_buffer
-}
+printing_options = dict(
+    printing_name = "binie",
+    file = string_buffer
+)
 
 try:
     # prints the template with the printing manager plugin, this should generate
