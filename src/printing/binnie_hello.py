@@ -54,7 +54,7 @@ for the printing of an hello world message """
 
 # creates a string buffer to receive the binary contents
 # of the processed print object
-string_buffer = colony.legacy.StringIO()()
+string_buffer = colony.legacy.BytesIO()
 
 # creates the printing options map
 printing_options = dict(
