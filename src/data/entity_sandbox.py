@@ -88,8 +88,8 @@ def start_em():
     The initialization of the entity manager is done
     according to the globally defined values.
 
-    @rtype: EntityManager
-    @return: The entity manager object that was created
+    :rtype: EntityManager
+    :return: The entity manager object that was created
     and initialized in this function.
     """
 
@@ -124,10 +124,10 @@ def stop_em(em, destroy = True):
     Stops the entity manager destroying the underlying
     structures in case the flag is set.
 
-    @type em: EntityManager
-    @param em: The entity manager to be stopped.
-    @type destroy: bool
-    @param destroy: If the underlying data structure should
+    :type em: EntityManager
+    :param em: The entity manager to be stopped.
+    :type destroy: bool
+    :param destroy: If the underlying data structure should
     be destroyed (deleted).
     """
 

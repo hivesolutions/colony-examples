@@ -60,8 +60,8 @@ class ApiError(Exception):
         """
         Constructor of the class.
 
-        @type json_data: Dictionary
-        @param json_data: The map containing the information
+        :type json_data: Dictionary
+        :param json_data: The map containing the information
         on the remote (api) exception.
         """
 
