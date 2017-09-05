@@ -42,7 +42,7 @@ import json
 import colony
 
 BASE_URL = "http://localhost:8080/dynamic/rest/mvc/"
-""" The base url to be used in the communication
+""" The base URL to be used in the communication
 to the omni service """
 
 class ApiError(Exception):
