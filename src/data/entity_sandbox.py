@@ -112,7 +112,7 @@ def start_em():
     # various definitions for the entity manager
     em.begin()
     try: em.create_definitions()
-    except: em.rollback()
+    except: em.rollback(); raise
     else: em.commit()
 
     # returns the initialized entity manager structure
