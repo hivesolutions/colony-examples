@@ -45,16 +45,16 @@ BASE_URL = "http://localhost:8080/dynamic/rest/mvc/"
 """ The base URL to be used in the communication
 to the omni service """
 
-class ApiError(Exception):
+class APIError(Exception):
     """
     Error class to be used to encapsulate
-    the decoded json information resulting
-    from the raising of an omni api error.
+    the decoded JSON information resulting
+    from the raising of an Omni API error.
     """
 
     json_data = None
     """ The map containing the information on
-    the exception """
+    the exception (to be serialized as JSON) """
 
     def __init__(self, json_data):
         """
@@ -62,7 +62,7 @@ class ApiError(Exception):
 
         :type json_data: Dictionary
         :param json_data: The map containing the information
-        on the remote (api) exception.
+        on the remote (API) exception.
         """
 
         self.json_data = json_data
@@ -107,7 +107,7 @@ def get_session_id():
 def handle_error(error):
     data = error.read()
     json_data = json.loads(data)
-    raise ApiError(json_data)
+    raise APIError(json_data)
 
 def get_first_json(path, parameters = None):
     json_data = get_json(path, parameters)
@@ -191,7 +191,7 @@ def execute(set = ("create_user",)):
             _globals = globals()
             method = _globals.get("_" + item, None)
             method and method()
-    except ApiError as error:
+    except APIError as error:
         error._print()
 
 execute()
