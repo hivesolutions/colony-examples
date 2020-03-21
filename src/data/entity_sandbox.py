@@ -48,7 +48,7 @@ destroyed at the end of the execution """
 
 DATABASE_PATH = "database.db"
 """ The path to the database to be used in the
-testing, note that this will be a sqlite database """
+testing, note that this will be a SQLite database """
 
 DATABASE_NAME = "sandbox"
 """ The name of the database to be used in the
