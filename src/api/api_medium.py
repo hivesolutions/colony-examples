@@ -44,7 +44,7 @@ manager.ensure(plugins.api_medium)
 
 API_PARAMETERS = {}
 """ The parameters to be used to configure
-the api client, should respect the default
+the API client, should respect the default
 configuration of the colony instance """
 
 BASE_URL = "http://localhost:8080/dynamic/rest/mvc/medium/"
